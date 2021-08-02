@@ -25,4 +25,5 @@ php artisan serve
 ```
 
 The Laravel sample task is now up and running! Access it at http://localhost:8000
+
 To show Festival sample task result at http://localhost:8000/get-festival
