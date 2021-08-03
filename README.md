@@ -1,5 +1,5 @@
 # Festival Project
-Project run with Laravel 8. Data in a particular manner: We display the band record label with filter and sorting, in this project we need to update composer and run projects in php 7.4 version only
+Project run with Laravel 8 for data in a particular manner: We display the band record label with filter and sorting, in this project we need to update composer and run projects in php 7.4 version only
 
 ## Preprocess
 install [Npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), [PHP-7.4](https://computingforgeeks.com/how-to-install-php-on-ubuntu), [Composer](https://getcomposer.org), [Git](https://git-scm.com/)
@@ -11,7 +11,7 @@ install [Npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 # Follow 2-3 steps
 
 # install dependencies
-composer install # to get php library and dependency 
+composer update # to get php library and dependency 
 npm install # for get node packages
 
 # create .env file and generate the application key

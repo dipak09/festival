@@ -15,15 +15,16 @@ class DashboardController extends Controller
     public function getFestival(Request $Request)
     {
         try //starting try block
-        { 
+        {
             $filterArray = $finalArray = []; // initilise required array variables
             $client = new \GuzzleHttp\Client();
             $apiBaseUri = Config('app.festival_base_uri'); //API base Uri
             $response = $client->request('GET', $apiBaseUri . '/codingtest/api/v1/festivals');
             if ($response->getStatusCode() == 200) //if response has 200 status
-            {                 
+            
+            {
                 $responseData = json_decode($response->getBody()
-                    ->getContents() , true); //json convert to array          
+                    ->getContents() , true); //json convert to array
                 if (!empty($responseData) && count($responseData) > 0)
                 {
                     foreach ($responseData as $data)
@@ -42,6 +43,7 @@ class DashboardController extends Controller
                                             $level3
                                         )
                                     ); //store Level3 data
+                                    
                                 }
                             }
                         }
@@ -50,7 +52,7 @@ class DashboardController extends Controller
             }
             else
             { //if response has error
-                return view('/content/festival', [ 'error' => 'Error: API response not succeed!' ]);
+                return view('/content/festival', ['error' => 'Error: API response not succeed!']);
             }
             $i = 0;
             foreach ($filterArray as $ky => $result)
@@ -58,20 +60,21 @@ class DashboardController extends Controller
                 $finalArray[$i]['record_label'] = $ky;
                 foreach ($result as $r)
                 {
-                  $lableName = key($r);
-                  $finalArray[$i]['brand'][] = $lableName;
-                  $finalArray[$i]['values'][$lableName] = $r[$lableName][0];
+                    $lableName = key($r);
+                    $finalArray[$i]['brand'][] = $lableName;
+                    $finalArray[$i]['values'][$lableName] = $r[$lableName][0];
                 }
                 $i++; //increment key
                 
-            }    
+            }
             $collection = collect($finalArray); //convert array to laravel collection
-            return view('/content/festival', [ 'data' => $collection->sortBy('record_label') , 'error' => null ]); //data passing to view
+            return view('/content/festival', ['data' => $collection->sortBy('record_label') , 'error' => null]); //data passing to view
             
         }
         catch(\Exception $e)
         {
-            return view('/content/festival', [ 'error' => $e->getMessage() ]);
+            return view('/content/festival', ['error' => $e->getMessage() ]);
         }
     }
 }
+
